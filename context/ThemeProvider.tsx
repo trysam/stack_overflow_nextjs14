@@ -17,12 +17,16 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, [mode]);
 
   const handleThemeChange = () => {
-    if (mode === "light") {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("prefers-color-scheme:light"))
+    ) {
       setMode("dark");
       document.documentElement.classList.add("dark");
     } else {
       setMode("light");
-      document.documentElement.classList.add("light");
+      document.documentElement.classList.remove("dark");
     }
   };
 
