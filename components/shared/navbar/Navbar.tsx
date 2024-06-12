@@ -13,10 +13,10 @@ const Navbar = () => {
         <Image
           src="/assets/images/site-logo.svg"
           alt="DevFlow"
-          width={23}
-          height={23}
+          width={22}
+          height={22}
         />
-        <p className="h2-bold text-dark-100 dark:text-light-900 max-sm:hidden ">
+        <p className="h2-semibold text-dark-100 dark:text-light-900 max-sm:hidden ">
           Dev<span className="text-primary-500">Overflow</span>
         </p>
       </Link>
