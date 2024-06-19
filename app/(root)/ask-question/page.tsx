@@ -1,5 +1,5 @@
 const AskQuestion = () => {
-  return <div>AskQuestion</div>;
+  return <div className="">AskQuestion</div>;
 };
 
 export default AskQuestion;

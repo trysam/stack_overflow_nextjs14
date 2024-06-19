@@ -13,7 +13,7 @@ const LeftSideBar = () => {
 
   return (
     <section
-      className={`background-light900_dark200 light-border custom-scrollbar sticky h-screen overflow-y-scroll border-r shadow-light-200 dark:text-light-900 dark:shadow-none max-sm:hidden lg:w-[266px]`}
+      className={`background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 h-screen overflow-y-scroll border-r shadow-light-200 dark:text-light-900 dark:shadow-none max-sm:hidden lg:w-[266px]`}
     >
       <div className="relative m-6 mt-36 ">
         <div className="flex flex-1 flex-col gap-6 max-md:items-center ">

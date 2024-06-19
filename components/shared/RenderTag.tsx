@@ -4,12 +4,17 @@ import { Badge } from "@/components/ui/badge";
 
 type props = {
   content: string;
-  _id: number;
-  questionCount: number;
-  hasCount: boolean;
+  _id?: number;
+  questionCount?: number;
+  hasCount?: boolean;
 };
 
-const RenderTag = ({ content, _id, questionCount, hasCount }: props) => {
+const RenderTag = ({
+  content,
+  _id,
+  questionCount = 0,
+  hasCount = false,
+}: props) => {
   return (
     <Link
       href={`/tags/${_id}`}

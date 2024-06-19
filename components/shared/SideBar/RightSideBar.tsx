@@ -59,7 +59,7 @@ const Tags = [
 const RightSideBar = () => {
   return (
     <section
-      className={`background-light900_dark200 light-border custom-scrollbar sticky right-0 h-screen w-[350px] overflow-y-scroll border-r shadow-light-200 dark:text-light-900 dark:shadow-none max-lg:hidden`}
+      className={`background-light900_dark200 light-border custom-scrollbar sticky right-0 top-0 h-screen w-[350px] overflow-y-scroll border-r shadow-light-200 dark:text-light-900 dark:shadow-none max-xl:hidden`}
     >
       <div className="m-6 mt-36 flex flex-1 flex-col justify-between">
         <h3 className="h3-bold text-dark200_light900 ">Top Questions</h3>
