@@ -32,7 +32,7 @@ const Metrics = ({
         height={16}
         className={`object-contain ${href ? "rounded-full" : ""}`}
       />
-      <p className={`${textStyle} flex items-center gap-1`}>
+      <div className={`${textStyle} flex items-center gap-1`}>
         <span>{formatNumber(value)}</span>
         {includeSeperator && (
           <div className="size-1 rounded-full bg-dark-100 dark:bg-light-850 max-sm:hidden" />
@@ -42,7 +42,7 @@ const Metrics = ({
         >
           {title}
         </span>
-      </p>
+      </div>
     </div>
   );
 };

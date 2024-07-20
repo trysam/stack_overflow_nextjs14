@@ -7,7 +7,7 @@ import { getTimestamp } from "@/lib/utils";
 interface questionProps {
   title: string;
   description: string;
-  tags: { _id: number; tag: string }[];
+  tags: { _id: number; name: string }[];
   author: { name: string; _id: string };
   date: Date;
   _id: string;
@@ -53,25 +53,26 @@ const QuestionCard = ({
       <div className="mt-3.5 flex flex-wrap gap-2">
         {tags.map((tag) => (
           <div key={tag._id}>
-            <RenderTag content={tag.tag} _id={tag._id} />
+            <RenderTag content={tag.name} _id={tag._id} />
           </div>
         ))}
       </div>
 
       <div className=" mt-6 flex flex-wrap justify-between gap-3 max-sm:flex-col">
-        <Link href={`/questions/${_id}`}>
-          <Metrics
-            title={`asked ${getTimestamp(date)}`}
-            value={author.name}
-            imgAlt="upvotes icon"
-            imgURL="/assets/images/avater3.JPG"
-            href={`/profiles/${author._id}`}
-            textStyle="small-medium max-sm:subtle-regular capitalize"
-            isAuthor={true}
-            includeSeperator={true}
-          />
-        </Link>
-
+        <div>
+          <Link href={`/questions/${_id}`}>
+            <Metrics
+              title={`asked ${getTimestamp(date)}`}
+              value={author.name}
+              imgAlt="upvotes icon"
+              imgURL="/assets/images/avater3.JPG"
+              href={`/profiles/${author._id}`}
+              textStyle="small-medium max-sm:subtle-regular capitalize"
+              isAuthor={true}
+              includeSeperator={true}
+            />
+          </Link>
+        </div>
         <div className="flex flex-wrap items-center gap-4">
           <Metrics
             title="votes"

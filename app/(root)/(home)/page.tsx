@@ -4,12 +4,15 @@ import Link from "next/link";
 import HomeFilters from "@/components/home/HomeFilters";
 import Filter from "@/components/shared/search/Filter";
 import { HomePageFilters } from "@/constants/filters";
-import { questions } from "@/constants/homeQuestions";
+// import { questions } from "@/constants/homeQuestions";
 
 import QuestionCard from "@/components/cards/QuestionCard";
 import NoResultFound from "@/components/shared/NoResultFound";
+import { getQuestion } from "@/lib/actions/questions.actions";
 
-const Home = () => {
+const Home = async () => {
+  const questions = await getQuestion({});
+
   return (
     <>
       <div className="flex flex-1 flex-col-reverse sm:flex-row sm:items-center sm:justify-between ">
@@ -46,7 +49,7 @@ const Home = () => {
               description={question.description}
               _id={question._id}
               title={question.title}
-              date={question.date}
+              date={question.createdAt}
               author={question.author}
               tags={question.tags}
               avatarImage={question.avatarImage}

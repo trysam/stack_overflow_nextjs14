@@ -7,7 +7,7 @@ export const questions = [
       { _id: 2, tag: "react" },
     ],
     author: { name: "John Doe", _id: "a1" },
-    date: new Date("2023-06-15"),
+    date: new Date("2024-07-02"),
     _id: "q1",
     avatarImage: "avatar1.jpg",
     avartarfallback: "default_avatar.jpg",
