@@ -52,7 +52,6 @@ const Home = async () => {
               date={question.createdAt}
               author={question.author}
               tags={question.tags}
-              avatarImage={question.avatarImage}
               avartarfallback={question.avartarfallback}
               answers={question.answers}
               upvotes={question.upvotes}

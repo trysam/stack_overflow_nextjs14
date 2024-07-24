@@ -8,10 +8,9 @@ interface questionProps {
   title: string;
   description: string;
   tags: { _id: number; name: string }[];
-  author: { name: string; _id: string };
+  author: { name: string; _id: string; picture: string };
   date: Date;
   _id: string;
-  avatarImage: string;
   avartarfallback: string;
   answers: {
     author: string;
@@ -30,7 +29,6 @@ const QuestionCard = ({
   author,
   date,
   _id,
-  avatarImage,
   avartarfallback,
   answers,
   upvotes,
@@ -65,7 +63,7 @@ const QuestionCard = ({
               title={`asked ${getTimestamp(date)}`}
               value={author.name}
               imgAlt="upvotes icon"
-              imgURL="/assets/images/avater3.JPG"
+              imgURL={author.picture}
               href={`/profiles/${author._id}`}
               textStyle="small-medium max-sm:subtle-regular capitalize"
               isAuthor={true}
