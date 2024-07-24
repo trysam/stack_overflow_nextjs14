@@ -72,7 +72,7 @@ export async function deleteUser(params: DeleteUserParams) {
     // );
 
     // Delete all the questions that belong to the user
-    Question.deleteMany({ author: user._id });
+    await Question.deleteMany({ author: user._id });
 
     // TODO: Delete all the answers, commment, views and so on that belong to the user
 
