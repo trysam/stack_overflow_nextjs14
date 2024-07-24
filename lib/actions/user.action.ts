@@ -20,7 +20,13 @@ export async function createUser(userData: CreateUserParams) {
   try {
     connectToDatabase();
 
-    const newUser = await User.create(userData);
+    const newUser = await User.create({
+      clerkId: userData.clerkId,
+      name: userData.name,
+      username: userData.username,
+      email: userData.email,
+      picture: userData.picture,
+    });
     return newUser;
   } catch (error) {
     console.log(error);
