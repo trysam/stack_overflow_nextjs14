@@ -73,7 +73,6 @@ const QuestionForm = ({ mongoUserId }: props) => {
 
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
   }
 
   const handleInputKeyDown = (
