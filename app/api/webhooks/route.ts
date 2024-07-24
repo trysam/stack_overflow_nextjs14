@@ -64,7 +64,7 @@ export async function POST(req: Request) {
 
     const name = `${first_name} ${last_name || ""}`;
 
-    const mongoUser = createUser({
+    const mongoUser = await createUser({
       clerkId: id,
       name: name.trim(),
       username: username!,
@@ -82,7 +82,7 @@ export async function POST(req: Request) {
     const { id, email_addresses, username, first_name, last_name, image_url } =
       evt.data;
     const name = `${first_name} ${last_name || ""}`;
-    const mongoUpdatedUser = updateUser({
+    const mongoUpdatedUser = await updateUser({
       clerkId: id,
       updateData: {
         name: name.trim(),
@@ -101,7 +101,7 @@ export async function POST(req: Request) {
 
   if (eventType === "user.deleted") {
     const { id } = evt.data;
-    const mongoDeletedUser = deleteUser({
+    const mongoDeletedUser = await deleteUser({
       clerkId: id!,
     });
     return NextResponse.json({
