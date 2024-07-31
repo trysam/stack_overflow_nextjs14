@@ -34,8 +34,8 @@ const Home = async () => {
         <Filter
           placeholder={"Select a Filter"}
           filters={HomePageFilters}
-          otherClasses="min-h-[64px] sm:min-w-[170px]"
-          containerClasses=" hideden max-md:flex"
+          otherClasses="min-h-[64px] sm:min-w-[170px] md:hidden"
+          containerClasses="max-md:flex"
         />
       </div>
       <div className="mt-10 max-md:hidden">

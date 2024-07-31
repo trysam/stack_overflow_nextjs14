@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 
 type props = {
   content: string;
-  _id?: number;
+  _id?: number | string;
   questionCount?: number;
   hasCount?: boolean;
 };
