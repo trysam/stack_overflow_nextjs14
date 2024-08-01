@@ -1,5 +1,5 @@
 "use server";
-import { GetTopInteractedTagsParams } from "../types";
+import { GetAllTagsParams, GetTopInteractedTagsParams } from "../types";
 import { connectToDatabase } from "../mongoose";
 import Question from "@/database/question.model";
 import Tag from "@/database/tag.model";
@@ -51,6 +51,19 @@ export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
     // }
 
     return topTags;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+export async function getAllTags(params: GetAllTagsParams) {
+  // Todo: const [ page, pageSize, filter, searchQuery] = params
+
+  try {
+    await connectToDatabase();
+    const tags = await Tag.find({ ...params });
+    return tags;
   } catch (error) {
     console.error(error);
     throw error;

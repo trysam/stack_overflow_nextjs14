@@ -4,8 +4,10 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.action";
+import { usePathname } from "next/navigation";
 
 export async function POST(req: Request) {
+  const pathname = usePathname();
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
   const WEBHOOK_SECRET = process.env.NEXT_PUBLIC_WEBHOOK_SECRET;
 
@@ -90,7 +92,7 @@ export async function POST(req: Request) {
         email: email_addresses[0].email_address,
         picture: image_url,
       },
-      path: `/profile/${id}`,
+      path: pathname,
     });
 
     return NextResponse.json({
