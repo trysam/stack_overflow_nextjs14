@@ -41,7 +41,7 @@ const QuestionCard = ({
       </div>
       <Link
         className="sm:h3-semibold base-semibold text-dark100_light900 line-clamp-1"
-        href={`/questions/${_id}`}
+        href={`/question/${_id}`}
       >
         {title}
       </Link>

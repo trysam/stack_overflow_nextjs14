@@ -10,8 +10,8 @@ export const questionSchema = z.object({
       message: "Topic must not be more than 64 characters.",
     }),
 
-  description: z.string().min(20, {
-    message: "Description must be at least 20 characters.",
+  description: z.string().min(100, {
+    message: "Description must be at least 100 characters.",
   }),
 
   tag: z
@@ -29,4 +29,10 @@ export const questionSchema = z.object({
     .max(5, {
       message: "You can select up to 5 tags.",
     }),
+});
+
+export const answerSchema = z.object({
+  answer: z.string().min(100, {
+    message: "Answer must be at least 100 characters.",
+  }),
 });

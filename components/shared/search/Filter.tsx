@@ -8,9 +8,9 @@ import {
 } from "@/components/ui/select";
 
 interface filterProps {
-  placeholder: string;
-  otherClasses: string;
-  containerClasses: string;
+  placeholder?: string;
+  otherClasses?: string;
+  containerClasses?: string;
   filters: {
     name: string;
     value: string;

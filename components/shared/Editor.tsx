@@ -49,6 +49,7 @@ const MyEditor = ({ mode, field }: any) => {
           }
         `,
         skin: mode === "dark" ? "oxide-dark" : "oxide",
+        content_css: mode === "dark" ? "dark" : "light",
       }}
     />
   );
