@@ -7,6 +7,7 @@ import {
   CreateQuestionParams,
   GetQuestionByIdParams,
   GetQuestionsParams,
+  GetSavedQuestionsParams,
 } from "../types";
 import User from "@/database/user.model";
 
@@ -90,6 +91,35 @@ export async function getQuestionById(params: GetQuestionByIdParams) {
       });
 
     return question;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getSavedQuestions(params: GetSavedQuestionsParams) {
+  try {
+    await connectToDatabase();
+    const { clerkId } = params;
+    const user = await User.findOne({ clerkId });
+    const savedQuestions = await Question.find({
+      _id: { $in: user.saved.map((id: string) => id) },
+    })
+      .populate({ path: "tags", model: Tag, select: "_id name" })
+      .populate({
+        path: "author",
+        model: User,
+        select: "_id clerkId name picture",
+      })
+      .populate({
+        path: "answers",
+        populate: {
+          path: "author",
+          model: User,
+          select: "_id clerkId name picture",
+        },
+      });
+    return savedQuestions;
   } catch (error) {
     console.log(error);
     throw error;

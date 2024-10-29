@@ -18,7 +18,7 @@ interface questionProps {
     id: string;
     content: string;
   }[];
-  upvotes: number;
+  upvotes: string[];
   views: number;
 }
 
@@ -74,7 +74,7 @@ const QuestionCard = ({
         <div className="flex flex-wrap items-center gap-4">
           <Metrics
             title="votes"
-            value={upvotes}
+            value={upvotes.length}
             imgAlt="upvotes icon"
             imgURL="assets/icons/like.svg"
             textStyle="small-medium max-sm:subtle-regular capitalize"

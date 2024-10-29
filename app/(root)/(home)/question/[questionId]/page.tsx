@@ -12,6 +12,7 @@ import { getUserById } from "@/lib/actions/user.action";
 import RenderTag from "@/components/shared/RenderTag";
 import AnswerCard from "@/components/cards/AnswerCard";
 import { Button } from "@/components/ui/button";
+import Votes from "@/components/shared/Votes";
 
 const page = async ({ params }: { params: { questionId: string } }) => {
   const questionbyId = await getQuestionById(params);
@@ -23,10 +24,13 @@ const page = async ({ params }: { params: { questionId: string } }) => {
   const { userId } = auth();
 
   let mongooseUser;
+  let mongooseUserId;
 
-  if (!userId) {
+  if (userId) {
     mongooseUser = await getUserById({ userId });
   }
+
+  mongooseUser ? (mongooseUserId = mongooseUser._id) : (mongooseUserId = "");
 
   return (
     <>
@@ -47,7 +51,22 @@ const page = async ({ params }: { params: { questionId: string } }) => {
               {questionbyId.author.name}
             </p>
           </Link>
-          <div className="flex justify-end">voting</div>
+          <div className="flex justify-end">
+            <Votes
+              type="Question"
+              itemId={JSON.stringify(questionbyId._id)}
+              userId={JSON.stringify(mongooseUserId)}
+              upvotes={questionbyId.upvotes.length}
+              downvotes={questionbyId.downvotes.length}
+              hasupVoted={questionbyId.upvotes.includes(mongooseUserId)}
+              hasdownVoted={questionbyId.downvotes.includes(mongooseUserId)}
+              hasSaved={
+                mongooseUser
+                  ? mongooseUser.saved.includes(questionbyId._id)
+                  : false
+              }
+            />
+          </div>
         </div>
         <h2 className="h2-semibold text-dark200_light900 mt-3.5 text-left">
           {questionbyId.title}
@@ -88,7 +107,12 @@ const page = async ({ params }: { params: { questionId: string } }) => {
               ))}
             </div>
           </div>
-          <AnswerCard questionId={questionbyId._id} />
+
+          <AnswerCard
+            questionIdString={JSON.stringify(questionbyId._id)}
+            mongoUserId={JSON.stringify(mongooseUserId)}
+          />
+
           {mongooseUser ? (
             <AnswwerForm
               questionId={JSON.stringify(questionbyId._id)}

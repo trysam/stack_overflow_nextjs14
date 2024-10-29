@@ -7,16 +7,25 @@ import { getTimestamp } from "@/lib/utils";
 import Link from "next/link";
 import { AnswerFilters } from "@/constants/filters";
 import Filter from "../shared/search/Filter";
+import Votes from "../shared/Votes";
 
 interface AnswerProps {
-  questionId: string;
+  questionIdString: string;
   page?: number;
   filter?: string;
+  mongoUserId: string;
 }
-const AnswerCard = async ({ questionId, page, filter }: AnswerProps) => {
+const AnswerCard = async ({
+  questionIdString,
+  page,
+  filter,
+  mongoUserId,
+}: AnswerProps) => {
+  const questionId = JSON.parse(questionIdString);
   const answers = await getAnswers({
     questionId,
   });
+  const mongoUser = JSON.parse(mongoUserId);
 
   return (
     <div>
@@ -63,7 +72,16 @@ const AnswerCard = async ({ questionId, page, filter }: AnswerProps) => {
 
                   <div className="flex justify-end">
                     {/* {TODO} */}
-                    VOTING
+                    <Votes
+                      type="Answer"
+                      itemId={JSON.stringify(answer._id)}
+                      userId={mongoUserId}
+                      downvotes={answer.downVotes.length}
+                      upvotes={answer.upVotes.length}
+                      hasupVoted={answer.upVotes.includes(mongoUser)}
+                      hasdownVoted={answer.downVotes.includes(mongoUser)}
+                      hasSaved={false}
+                    />
                   </div>
                 </div>
                 <div className="max-sm:max-w-[260px] sm:max-w-[760px] xl:w-[520px]">

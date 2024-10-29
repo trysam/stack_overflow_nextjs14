@@ -1,14 +1,13 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
-const MyEditor = ({ mode, field }: any) => {
-  const editorRef = useRef(null);
+const MyEditor = ({ mode, field, editorRef }: any) => {
   return (
     <Editor
       apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
       onInit={(_evt, editor) => {
         // @ts-ignore
-        editorRef.current = editor;
+        editorRef.current = editor; // This should set editor instance to editorRef
       }}
       onBlur={field.onBlur}
       onEditorChange={(content) => {

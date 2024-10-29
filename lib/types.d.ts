@@ -118,7 +118,7 @@ export interface CreateUserParams {
 }
 
 export interface GetUserByIdParams {
-  userId: string;
+  userId: string | null;
 }
 
 export interface GetAllUsersParams {
@@ -138,6 +138,7 @@ export interface ToggleSaveQuestionParams {
   userId: string;
   questionId: string;
   path: string;
+  hasSaved: boolean;
 }
 
 export interface GetSavedQuestionsParams {

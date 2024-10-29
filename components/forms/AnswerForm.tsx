@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "@/context/ThemeProvider";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { answerSchema } from "@/lib/validations";
@@ -29,6 +29,7 @@ const AnswerForm = ({ mongoUserId, questionId }: props) => {
   const { mode } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
+  const editorRef = useRef(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -41,11 +42,15 @@ const AnswerForm = ({ mongoUserId, questionId }: props) => {
   });
 
   // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof answerSchema>) {
+  async function onSubmit(
+    values: z.infer<typeof answerSchema>,
+    editorRef: any
+  ) {
     setIsSubmitting(true);
 
     // make asychronous call to api
     // contain all form data
+
     try {
       await createAnswer({
         content: values.answer,
@@ -54,12 +59,15 @@ const AnswerForm = ({ mongoUserId, questionId }: props) => {
         path: pathname,
       });
 
-      form.reset();
-      // if (editorRef.current){
-      //   const editor = editorRef.current as any;
+      // Log editorRef to check if it has the editor instance
+      console.log("Editor instance:", JSON.stringify(editorRef.current));
 
-      //   editor.setContent('')
-      // }
+      // Clear editor content if editorRef is defined
+      if (editorRef.current) {
+        const editor = editorRef.current as any;
+        console.log("Clearing editor content...");
+        editor.setContent(""); // Clears the editor content
+      }
 
       // navigate to home page
       router.push(`/question/${JSON.parse(questionId)}`);
@@ -105,7 +113,7 @@ const AnswerForm = ({ mongoUserId, questionId }: props) => {
             render={({ field }) => (
               <FormItem>
                 <FormControl className="mt-3.5">
-                  <MyEditor mode={mode} field={field} />
+                  <MyEditor mode={mode} field={field} editorRef={editorRef} />
                 </FormControl>
                 <FormDescription className="small-regular text-light-500">
                   Provide a detailed answer. Try to make it simple and easy to
